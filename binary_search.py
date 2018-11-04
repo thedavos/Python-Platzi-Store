@@ -1,18 +1,30 @@
 import random
 
 def binary_search(data, target, low, high):
-    if low > high: 
-        return False
     
     mid = (low + high) // 2
-    print(mid)
+    
+    while target != data[mid]:
+    
+        if low > high: 
+            return False
+        
+        if target < data[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
 
-    if target == data[mid]:
+        mid = (low + high) // 2
+
+    else:
+        return True
+
+    ''' if target == data[mid]:
         return True
     elif target < data[mid]:
         return binary_search(data, target, low, mid - 1)
     else:
-        return binary_search(data, target, mid + 1, high)
+        return binary_search(data, target, mid + 1, high) '''
 
 
 if __name__ == '__main__':
@@ -25,5 +37,7 @@ if __name__ == '__main__':
     target = int(input('What number would you like to find?: '))
     found = binary_search(data, target, 0, len(data) - 1)
 
-    print(found)
-
+    if found:
+        print('{} was found'.format(target))
+    else:
+        print('{} was not found'.format(target))
